@@ -1,50 +1,50 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from "react";
 
 /**
  * 防抖 Hook
  * 延迟更新值，避免频繁操作
  */
 export function useDebounce<T>(value: T, delay: number): T {
-  const [debouncedValue, setDebouncedValue] = useState<T>(value)
+  const [debouncedValue, setDebouncedValue] = useState<T>(value);
 
   useEffect(() => {
     const handler = setTimeout(() => {
-      setDebouncedValue(value)
-    }, delay)
+      setDebouncedValue(value);
+    }, delay);
 
     return () => {
-      clearTimeout(handler)
-    }
-  }, [value, delay])
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
 
-  return debouncedValue
+  return debouncedValue;
 }
 
 /**
  * 防抖回调 Hook
  * 防抖执行回调函数
  */
-export function useDebouncedCallback<T extends (...args: any[]) => any>(
+export function useDebouncedCallback<T extends (...args: unknown[]) => unknown>(
   callback: T,
-  delay: number
+  delay: number,
 ): T {
-  const [debounceTimer, setDebounceTimer] = useState<number>()
+  const [debounceTimer, setDebounceTimer] = useState<number>();
 
   const debouncedCallback = ((...args: Parameters<T>) => {
-    clearTimeout(debounceTimer)
+    clearTimeout(debounceTimer);
     const newTimer = window.setTimeout(() => {
-      callback(...args)
-    }, delay)
-    setDebounceTimer(newTimer)
-  }) as T
+      callback(...args);
+    }, delay);
+    setDebounceTimer(newTimer);
+  }) as T;
 
   useEffect(() => {
     return () => {
       if (debounceTimer) {
-        clearTimeout(debounceTimer)
+        clearTimeout(debounceTimer);
       }
-    }
-  }, [debounceTimer])
+    };
+  }, [debounceTimer]);
 
-  return debouncedCallback
-} 
+  return debouncedCallback;
+}

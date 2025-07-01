@@ -1,30 +1,29 @@
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-import { Outlet, Route, Routes, Link, useNavigate } from "react-router-dom"
-import { useTranslation } from "react-i18next"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { Outlet, Route, Routes, Link, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { Toaster } from "@/components/ui/sonner"
-import { toast } from "sonner"
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Toaster } from "@/components/ui/sonner";
+import { toast } from "sonner";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Home, Languages, LogIn, Rocket } from "lucide-react"
+} from "@/components/ui/card";
+import { Home, Languages, LogIn, Rocket } from "lucide-react";
 
 // 1. 登录表单的验证规则 (使用 Zod)
 const formSchema = z.object({
@@ -34,15 +33,15 @@ const formSchema = z.object({
   password: z.string().min(6, {
     message: "密码必须至少包含6个字符。",
   }),
-})
+});
 
 // 2. 语言切换器组件
 function LanguageSwitcher() {
-  const { i18n } = useTranslation()
+  const { i18n } = useTranslation();
 
   const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng)
-  }
+    i18n.changeLanguage(lng);
+  };
 
   return (
     <div className="flex items-center gap-1">
@@ -64,12 +63,12 @@ function LanguageSwitcher() {
         ZH
       </Button>
     </div>
-  )
+  );
 }
 
 // 3. 整体应用布局
 function Layout() {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   return (
     <div>
       <header className="border-b">
@@ -102,12 +101,12 @@ function Layout() {
       </main>
       <Toaster />
     </div>
-  )
+  );
 }
 
 // 4. 首页组件
 function HomePage() {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   return (
     <Card>
       <CardHeader>
@@ -118,13 +117,13 @@ function HomePage() {
         <p>{t("homePage.cta")}</p>
       </CardContent>
     </Card>
-  )
+  );
 }
 
 // 5. 登录页组件
 function LoginPage() {
-  const navigate = useNavigate()
-  const { t } = useTranslation()
+  const navigate = useNavigate();
+  const { t } = useTranslation();
   // 使用 useForm hook 来创建表单
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -132,18 +131,18 @@ function LoginPage() {
       email: "",
       password: "",
     },
-  })
+  });
 
   // 表单提交处理函数
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log("表单提交成功:", values)
+    console.log("表单提交成功:", values);
     toast.success("登录成功！", {
       description: `欢迎回来, ${values.email}`,
       action: {
         label: t("nav.home"),
         onClick: () => navigate("/"),
       },
-    })
+    });
   }
 
   return (
@@ -176,7 +175,11 @@ function LoginPage() {
                   <FormItem>
                     <FormLabel>密码</FormLabel>
                     <FormControl>
-                      <Input type="password" placeholder="••••••••" {...field} />
+                      <Input
+                        type="password"
+                        placeholder="••••••••"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -190,7 +193,7 @@ function LoginPage() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }
 
 // 6. 应用主路由配置
@@ -202,7 +205,7 @@ function App() {
         <Route path="login" element={<LoginPage />} />
       </Route>
     </Routes>
-  )
+  );
 }
 
-export default App
+export default App;
