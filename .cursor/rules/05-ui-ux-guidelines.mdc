@@ -1,7 +1,7 @@
 ---
 description: 
 globs: 
-alwaysApply: false
+alwaysApply: true
 ---
 # 03. UI/UX 设计准则 (Apple iOS 风格)
 
