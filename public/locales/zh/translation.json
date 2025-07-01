@@ -1,0 +1,20 @@
+{
+  "nav": {
+    "home": "首页",
+    "login": "登录"
+  },
+  "homePage": {
+    "title": "欢迎使用增强版项目模版",
+    "description": "现在，模版已集成了路由、表单、测试、国际化等核心功能。",
+    "cta": "点击右上角的 \"登录\" 按钮，查看使用 `react-hook-form` 和 `zod` 构建的表示例。"
+  },
+  "loginPage": {
+    "title": "用户登录",
+    "description": "请输入您的凭据以继续"
+  },
+  "language": "语言",
+  "languageSwitcher": {
+    "en": "English",
+    "zh": "中文"
+  }
+} 

@@ -1,0 +1,58 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# 06. 国际化 (i18n) 规范
+
+本项目采用 `react-i18next` 作为国际化解决方案，默认支持中文和英文。
+
+## 核心配置
+
+### 语言配置文件位置
+- **中文翻译**: `public/locales/zh/translation.json`
+- **英文翻译**: `public/locales/en/translation.json`
+- **i18n 初始化**: `src/i18n.ts`
+
+### 命名空间规范
+```json
+{
+  "nav": { "home": "首页", "login": "登录" },
+  "common": { "save": "保存", "cancel": "取消" },
+  "validation": { "required": "此字段为必填项" },
+  "feature": { "title": "功能标题" }
+}
+```
+
+## 使用规范
+
+### 组件中使用翻译
+```typescript
+import { useTranslation } from 'react-i18next';
+
+function MyComponent() {
+  const { t } = useTranslation();
+  return <h1>{t('nav.home')}</h1>;
+}
+```
+
+### 表单验证消息
+```typescript
+const schema = z.object({
+  email: z.string().email({ message: t('validation.invalidEmail') })
+});
+```
+
+## 新增语言流程
+
+1. 在 `public/locales/` 下创建新语言目录
+2. 添加完整的 `translation.json` 文件
+3. 在 `LanguageSwitcher` 组件中添加对应按钮
+4. 测试所有页面的翻译完整性
+
+## 翻译文件管理规范
+
+- **键名使用小驼峰**: `errorMessage` 而非 `error_message`
+- **嵌套结构清晰**: 按功能模块划分命名空间
+- **占位符使用**: `"welcome": "欢迎, {{name}}！"`
+- **复数形式支持**: 使用 i18next 的复数规则

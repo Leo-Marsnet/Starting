@@ -1,0 +1,91 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# 07. AI 协作指令
+
+当AI协助开发时，应严格遵循以下指令，确保代码质量和团队规范。
+
+## 代码生成要求
+
+### TypeScript 优先
+- **所有新代码必须使用 TypeScript**
+- **严格类型定义**: 避免使用 `any`，优先使用具体类型
+- **接口定义**: 为所有数据结构定义 TypeScript 接口
+
+### 组件开发规范
+```typescript
+// ✅ 推荐的组件结构
+interface ComponentProps {
+  title: string;
+  onAction?: () => void;
+}
+
+export function MyComponent({ title, onAction }: ComponentProps) {
+  // 组件逻辑
+}
+```
+
+### 导入顺序规范
+```typescript
+// 1. React 相关
+import React from 'react';
+import { useState } from 'react';
+
+// 2. 第三方库
+import { useQuery } from '@tanstack/react-query';
+import { z } from 'zod';
+
+// 3. 项目内部
+import { Button } from '@/components/ui/button';
+import { api } from '@/lib/api';
+```
+
+## 功能实现要求
+
+### 表单处理
+- **必须使用**: `react-hook-form` + `zod` 验证
+- **错误处理**: 完整的表单验证和错误显示
+- **国际化**: 所有文本使用 `useTranslation`
+
+### 状态管理
+- **简单状态**: 使用 `useState`
+- **复杂状态**: 使用 `Zustand`
+- **服务器状态**: 使用 `@tanstack/react-query`
+
+### API 调用
+- **统一封装**: 使用 `src/lib/api.ts` 中的方法
+- **错误处理**: 完整的错误边界和用户提示
+- **加载状态**: 适当的loading和error状态显示
+
+## 代码质量要求
+
+### 注释规范
+- **复杂逻辑**: 必须添加中文注释说明
+- **公共函数**: 使用 JSDoc 格式
+- **类型定义**: 复杂类型添加说明注释
+
+### 性能优化
+- **组件优化**: 合理使用 `useMemo`、`useCallback`
+- **路由懒加载**: 大型组件使用动态导入
+- **避免不必要渲染**: 正确的依赖数组
+
+### 错误处理
+- **用户友好**: 所有错误都要有用户友好的提示
+- **开发调试**: 开发环境下保留详细错误信息
+- **边界组件**: 关键组件包装错误边界
+
+## 测试要求
+
+每个新功能都应包含：
+- **单元测试**: 核心逻辑函数
+- **组件测试**: 用户交互和渲染
+- **集成测试**: 关键业务流程
+
+## 文档更新
+
+代码变更时同步更新：
+- **README.md**: 新功能说明
+- **类型定义**: 接口文档
+- **Cursor Rules**: 新增规范或最佳实践

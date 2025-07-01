@@ -1,0 +1,54 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# 02. 技术架构与最佳实践
+
+## 架构设计
+
+*   **模块化**: 强制进行模块化设计。按业务领域或功能职责（如 `inventory`, `sales`, `finance`）划分代码、状态和逻辑。
+*   **推荐目录结构**: 推荐采用功能驱动 (Feature-Driven) 的目录结构，以保持项目在迭代中的清晰性。
+    ```
+    src/
+    ├── features/
+    │   ├── auth/
+    │   │   ├── api/      # API请求 (React Query hooks)
+    │   │   ├── components/ # 该功能独有的组件
+    │   │   ├── hooks/    # 该功能相关的自定义Hook
+    │   │   └── types.ts  # TypeScript 类型定义
+    │   └── ...
+    ├── components/     # 全局可复用的UI组件
+    ├── lib/            # 工具函数、第三方库配置
+    ├── pages/          # 页面级组件
+    └── ...
+    ```
+*   **可扩展性**: 设计应考虑未来的功能扩展，避免硬编码和紧耦合。
+*   **可维护性**: 编写清晰、自解释的代码，遵循单一职责原则（SRP）。
+
+## 核心技术栈与预置库
+
+本模版已预置并配置好以下核心库，作为项目开发的标准基础：
+
+*   **语言**: **TypeScript** (已开启 `strict` 模式)
+*   **前端框架**: **React**
+*   **构建工具**: **Vite**
+*   **路由管理**: **React Router**
+*   **UI 组件库**: **shadcn/ui** (基于 Tailwind CSS)
+*   **状态管理**: **Zustand** & **TanStack Query (React Query)**
+*   **表单管理**: **React Hook Form** & **Zod**
+*   **测试框架**: **Vitest** & **React Testing Library**
+*   **列表虚拟化**: **TanStack Virtual**
+*   **代码格式化**: **Prettier**
+*   **静态检查**: **ESLint**
+
+## Git 提交规范
+*   **强制遵循**: 所有 `git commit` 信息都必须遵循 **Conventional Commits** 规范。这有助于自动化生成 changelog 并保持提交历史的清晰。
+*   **常用类型**:
+    *   `feat`: 新增功能
+    *   `fix`: 修复 bug
+    *   `docs`: 仅修改文档
+    *   `style`: 代码格式化（不影响代码逻辑）
+    *   `refactor`: 代码重构
+    *   `test`: 新增或修改测试
+    *   `chore`: 构建流程或辅助工具的变动

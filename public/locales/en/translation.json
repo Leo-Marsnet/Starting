@@ -1,0 +1,20 @@
+{
+  "nav": {
+    "home": "Home",
+    "login": "Login"
+  },
+  "homePage": {
+    "title": "Welcome to the Enhanced Project Template",
+    "description": "The template is now integrated with core features like routing, forms, testing, and internationalization.",
+    "cta": "Click the 'Login' button in the top right to see the example built with `react-hook-form` and `zod`."
+  },
+  "loginPage": {
+    "title": "User Login",
+    "description": "Please enter your credentials to continue"
+  },
+  "language": "Language",
+  "languageSwitcher": {
+    "en": "English",
+    "zh": "中文"
+  }
+} 

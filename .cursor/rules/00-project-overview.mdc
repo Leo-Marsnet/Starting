@@ -1,0 +1,20 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# 00. 项目概述
+
+这是一个基于 **Vite + React + TypeScript** 的高级项目模版。
+
+该项目遵循以下核心技术栈和规范，AI在进行任何操作前，应将下列文件作为最高优先级的上下文。
+
+## 关键配置文件与入口
+
+*   **项目依赖与脚本**: @package.json
+*   **TypeScript 配置**: @tsconfig.json
+*   **Vite 构建配置**: @vite.config.ts
+*   **Tailwind CSS 配置**: @tailwind.config.cjs
+*   **PostCSS 配置**: @postcss.config.cjs
+*   **应用主入口**: @src/main.tsx
+*   **根组件与路由**: @src/App.tsx
